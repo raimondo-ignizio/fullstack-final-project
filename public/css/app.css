@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main-header, footer {
+  height: 90px;
+  background-color: orange;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.form-container {
+  margin: 250px 0;
+}
+
+.form-header {
+  margin-bottom: 25px;
+  font-size: 30px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+}
+
+.form-header img {
+  height: 35px;
+  width: 35px;
+  margin-right: 20px;
+}
+
+.submit-button {
+  margin-top: 20px;
+}
