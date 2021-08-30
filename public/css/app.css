@@ -6,7 +6,7 @@
 
 .main-header, footer {
   height: 90px;
-  background-color: orange;
+  background-color: #FFB400;
 }
 
 .flex {
@@ -17,7 +17,7 @@
 }
 
 .form-container {
-  margin: 250px 0;
+  margin: 125px 0;
 }
 
 .form-header {
@@ -36,4 +36,24 @@
 
 .submit-button {
   margin-top: 20px;
+}
+
+body {
+  background-image: linear-gradient(to bottom, #4facfe 0%, #00f2fe 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.margin-top-20 {
+  margin-top: 20px;
+}
+
+.table-container {
+  margin: 25px 25px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
