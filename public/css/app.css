@@ -52,8 +52,18 @@ body {
   margin: 25px 25px;
 }
 
+#container {
+  display: flex;
+  flex-direction: column;
+  min-height: 80vh;
+}
+
 footer {
-  position: fixed;
-  bottom: 0;
+  margin-top: auto;
   width: 100%;
+}
+
+.flex-button {
+  display: flex;
+  justify-content: space-around;
 }

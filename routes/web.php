@@ -28,3 +28,16 @@ Route::get("/book-form", function(){
 Route::post("/book-form", [BookController::class, "create"])->middleware("auth");
 
 Route::get("/my-books", [BookController::class, "read"])->middleware("auth");
+
+Route::post("/to-read", [BookController::class, "unreadToRead"])->middleware("auth");
+
+Route::post("/to-unread", [BookController::class, "readToUnread"])->middleware("auth");
+
+Route::post("/delete", [BookController::class, "delete"])->middleware("auth");
+
+Route::get("/to-read-list", [BookController::class, "showToRead"])->middleware("auth");
+
+Route::patch("/my-books", [
+  "as" => "books.table",
+  "uses" => "BookController@read"
+]);

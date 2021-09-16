@@ -19,6 +19,8 @@ class Book extends Model
       "pages",
       "is_part_of_a_series",
       "series",
-      "series_number"
+      "series_number",
+      "is_finished",
+      "user_id"
     ];
 }

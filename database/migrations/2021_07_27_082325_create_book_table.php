@@ -23,6 +23,8 @@ class CreateBookTable extends Migration
             $table->boolean("is_part_of_a_series");
             $table->string("series")->nullable();
             $table->integer("series_number")->nullable();
+            $table->boolean("is_finished")->nullable()->default("0");
+            $table->integer("user_id");
             $table->timestamps();
         });
     }
