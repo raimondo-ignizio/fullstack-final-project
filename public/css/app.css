@@ -1,7 +1,23 @@
+@font-face {
+  font-family: "PTSansNarrow";
+  src: url("/fonts/PTSansNarrow-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "PTSansNarrow";
+  src: url("/fonts/PTSansNarrow-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "PTSansNarrow";
+  font-size: 20px;
 }
 
 .main-header, footer {
@@ -18,8 +34,12 @@
   flex-direction: column;
 }
 
+#container {
+  margin-bottom: 8px;
+}
+
 .form-container {
-  margin: 125px 0;
+  margin: 155px 0;
 }
 
 .logo-container {
@@ -28,15 +48,15 @@
 
 .form-header {
   margin-bottom: 25px;
-  font-size: 30px;
+  font-size: 35px;
   font-weight: bold;
   display: flex;
   justify-content: center;
 }
 
 .form-header img {
-  height: 35px;
-  width: 35px;
+  height: 40px;
+  width: 40px;
   margin-right: 20px;
 }
 
@@ -64,6 +84,14 @@ body {
   min-height: 80vh;
 }
 
+#container a, .form-container a {
+  color: #CC8F00;
+}
+
+#container p, #container a {
+  margin: 0 10px;
+}
+
 footer {
   margin-top: auto;
   width: 100%;
@@ -86,21 +114,65 @@ a {
 #header-logo {
   height: 90px;
   width: 210px;
+  margin-left: -20px;
 }
 
 #home-logo {
-  height: 50%;
-  width: 50%;
+  height: 100%;
+  width: 100%;
+  margin-left: 18px;
 }
 
 #user {
   margin: 30px 30px 0 0;
 }
 
+#social img {
+  margin: 0 5px;
+  width: 20px;
+  height: 20px;
+}
+
+#copyright {
+  margin-left: 15px;
+}
+
+#copyright p {
+  font-size: 15px;
+  padding-top: 25px;
+  color: #292929;
+}
+
+button {
+  border-radius: 3px;
+  font-size: 15px;
+  background-color: #355C9C;
+  color: white;
+  border-color: white;
+  min-height: 30px;
+  min-width: 50px;
+}
+
+@media only screen and (max-width: 319px) {
+  #container p, #container a {
+    font-size: 17px;
+  }
+}
+
 @media only screen and (min-width: 768px) {
+
+  #home-logo {
+    height: 50%;
+    width: 50%;
+  }
 
   #copyright {
     margin-left: 75px;
+  }
+
+  #copyright p {
+    font-size: 17px;
+    color: #292929;
   }
 
   #social {
@@ -111,5 +183,11 @@ a {
     margin: 0 7px;
     width: 35px;
     height: 35px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  * {
+    font-size: 25px;
   }
 }

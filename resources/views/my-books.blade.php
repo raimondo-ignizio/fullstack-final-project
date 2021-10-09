@@ -5,15 +5,15 @@
   <div class="table-container table-responsive-lg">
     <table class="table table-striped">
       <tr>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Genre</th>
-        <th>Year</th>
-        <th>Pages</th>
-        <th>Series</th>
-        <th>Series Number</th>
-        <th>Finished</th>
-        <th>Change status</th>
+        <th>Titolo</th>
+        <th>Autore</th>
+        <th>Genere</th>
+        <th>Anno</th>
+        <th>Pagine</th>
+        <th>Serie</th>
+        <th>Numero nella serie</th>
+        <th>Finito</th>
+        <th>Cambia stato</th>
       </tr>
       <?php
       use App\Models\Book;
@@ -33,18 +33,18 @@
         if ($data["is_finished"] === 0) {
           echo "<td><img src='icons/uncheck-icon.svg'/></td>
                 <td><form method='POST' action='to-read'>
-                      <button type='submit' name='id' value='{$data["id"]}'>Set to read</button>
+                      <button type='submit' name='id' value='{$data["id"]}'>Segna come letto</button>
                     </form></td>";
         } else if ($data["is_finished"] === 1) {
           echo "<td><img src='icons/check-icon.svg'/></td>
                 <td><form method='POST' action='to-unread'>
-                      <button type='submit' name='id' value='{$data["id"]}'>Set to unread</button>
+                      <button type='submit' name='id' value='{$data["id"]}'>Segna come da leggere</button>
                     </form></td>";
         };
 
         echo "<td><form method='POST' action='delete'>
                     <button type='submit' name='id' value='{$data["id"]}'
-                     onclick='return confirm(`Are you sure?`);'>Delete</button>
+                     onclick='return confirm(`Are you sure?`);'>Elimina</button>
                      </form></td></tr>";
       }
       ?>
@@ -55,9 +55,9 @@
     </nav>
   </div>
   <div class="flex-button">
-    <a href="home"><button type="button">Go back</button></a>
-    <a href="to-read-list"><button type="button">To read</button></a>
-    <a href="my-books"><button type="button">All my books</button></a>
+    <a href="home"><button type="button">Torna indietro</button></a>
+    <a href="to-read-list"><button type="button">Da leggere</button></a>
+    <a href="my-books"><button type="button">Tutti i miei libri</button></a>
   </div>
 </div>
 @endsection

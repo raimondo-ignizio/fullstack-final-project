@@ -19,12 +19,12 @@
 
               <div class="w-full p-6">
                   <p class="text-gray-700">
-                      Welcome, {{ Auth::user()-> name }}!
+                      Benvenuto/a, {{ Auth::user()-> name }}!
                   </p>
 
-                  <a href="book-form" class="home-link">Add a book</a>
-                  <a href="my-books" class="home-link">My books</a>
-                  <a href="to-read-list" class="home-link">My to-read list</a>
+                  <a href="book-form" class="home-link">Aggiungi un libro</a>
+                  <a href="my-books" class="home-link">I miei libri</a>
+                  <a href="to-read-list" class="home-link">Non letti</a>
               </div>
           </section>
       </div>

@@ -8,7 +8,7 @@
 
                 <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md form-header">
                   <img src="icons/register-icon.svg"/>
-                    {{ __('Register') }}
+                    {{ __('Registrati') }}
                 </header>
 
                 <form class="w-full px-6 space-y-6 sm:px-10 sm:space-y-8" method="POST"
@@ -17,7 +17,7 @@
 
                     <div class="flex flex-wrap">
                         <label for="name" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
-                            {{ __('Name') }}:
+                            {{ __('Nome') }}:
                         </label>
 
                         <input id="name" type="text" class="form-input w-full @error('name')  border-red-500 @enderror"
@@ -32,7 +32,7 @@
 
                     <div class="flex flex-wrap">
                         <label for="email" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
-                            {{ __('E-Mail Address') }}:
+                            {{ __('E-Mail') }}:
                         </label>
 
                         <input id="email" type="email"
@@ -64,7 +64,7 @@
 
                     <div class="flex flex-wrap">
                         <label for="password-confirm" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
-                            {{ __('Confirm Password') }}:
+                            {{ __('Conferma Password') }}:
                         </label>
 
                         <input id="password-confirm" type="password" class="form-input w-full"
@@ -73,14 +73,14 @@
 
                     <div class="flex flex-wrap">
                         <button type="submit"
-                            class="w-full select-none font-bold whitespace-no-wrap p-3 rounded-lg text-base leading-normal no-underline text-gray-100 bg-blue-500 hover:bg-blue-700 sm:py-4 submit-button">
-                            {{ __('Register') }}
+                            class="w-full select-none font-bold whitespace-no-wrap rounded-lg text-base leading-normal no-underline text-gray-100 bg-blue-500 hover:bg-blue-700 sm:py-4 submit-button">
+                            {{ __('Registrati') }}
                         </button>
 
                         <p class="w-full text-xs text-center text-gray-700 my-6 sm:text-sm sm:my-8">
-                            {{ __('Already have an account?') }}
+                            {{ __('Hai già un account?') }}
                             <a class="text-blue-500 hover:text-blue-700 no-underline hover:underline" href="{{ route('login') }}">
-                                {{ __('Login') }}
+                                {{ __('Entra') }}
                             </a>
                         </p>
                     </div>
