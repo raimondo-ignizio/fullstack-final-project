@@ -23,8 +23,8 @@
                   </p>
 
                   <a href="book-form" class="home-link">Aggiungi un libro</a>
-                  <a href="my-books" class="home-link">I miei libri</a>
-                  <a href="to-read-list" class="home-link">Non letti</a>
+                  <a href="books" class="home-link">I miei libri</a>
+                  <a href="unread" class="home-link">Non letti</a>
               </div>
           </section>
       </div>

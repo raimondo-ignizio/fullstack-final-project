@@ -5,17 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Book extends Model
+class UserBook extends Model
 {
     use HasFactory;
 
-    protected $table = "books";
+    protected $table = "user_books";
 
     protected $fillable = [
-      "title",
-      "author",
-      "genre",
-      "year",
-      "pages"
+      "user_id",
+      "book_id",
+      "is_finished"
     ];
 }

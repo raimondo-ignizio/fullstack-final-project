@@ -12,9 +12,6 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-      "http://127.0.0.1:8000/book-form",
-      "http://127.0.0.1:8000/to-read",
-      "http://127.0.0.1:8000/to-unread",
-      "http://127.0.0.1:8000/delete"
+      
     ];
 }

@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\UserBookController;
+use App\Models\Book;
+use App\Models\UserBook;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,19 +28,21 @@ Route::get("/book-form", function(){
   return view("book-form");
 })->middleware("auth");
 
-Route::post("/book-form", [BookController::class, "create"])->middleware("auth");
+Route::get("/search", [BookController::class, "read"])->middleware("auth");
 
-Route::get("/my-books", [BookController::class, "read"])->middleware("auth");
+Route::post("/{book}/create", [UserBookController::class, "create"])->middleware("auth");
 
-Route::post("/to-read", [BookController::class, "unreadToRead"])->middleware("auth");
+Route::get("/books", [UserBookController::class, "read"])->middleware("auth");
 
-Route::post("/to-unread", [BookController::class, "readToUnread"])->middleware("auth");
+Route::post("/books/{userbook}/to-read", [UserBookController::class, "unreadToRead"])->middleware("auth");
 
-Route::post("/delete", [BookController::class, "delete"])->middleware("auth");
+Route::post("/books/{userbook}/to-unread", [UserBookController::class, "readToUnread"])->middleware("auth");
 
-Route::get("/to-read-list", [BookController::class, "showToRead"])->middleware("auth");
+Route::post("/books/{userbook}/delete", [UserBookController::class, "delete"])->middleware("auth");
 
-Route::patch("/my-books", [
+Route::get("/unread", [UserBookController::class, "showToRead"])->middleware("auth");
+
+Route::patch("/books", [
   "as" => "books.table",
-  "uses" => "BookController@read"
+  "uses" => "UserBookController@read"
 ]);
