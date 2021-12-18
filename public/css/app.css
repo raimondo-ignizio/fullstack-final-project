@@ -88,10 +88,6 @@ body {
   color: #CC8F00;
 }
 
-#container p, #container a {
-  margin: 0 10px;
-}
-
 footer {
   margin-top: auto;
   width: 100%;
@@ -151,6 +147,17 @@ button {
   border-color: white;
   min-height: 30px;
   min-width: 50px;
+}
+
+#hint {
+  margin: 30px 0 30px 0;
+  font-style: italic;
+  color: grey;
+}
+
+.error-message {
+  font-size: 35px;
+  margin-top: 320px;
 }
 
 @media only screen and (max-width: 319px) {

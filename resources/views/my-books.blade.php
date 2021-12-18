@@ -23,22 +23,25 @@
             <td>{{ $book->pages }}</td>
 
         @if ($book->is_finished === 0)
-          <td><img src='icons/uncheck-icon.svg'/></td>
+          <td><img src='/icons/uncheck-icon.svg'/></td>
                 <td><form method='POST' action='books/{{ $book->n }}/to-read'>
+                  @method('PUT')
                   @csrf
                       <button type='submit'>Segna come letto</button>
                     </form></td>
         @endif
 
         @if ($book->is_finished === 1)
-        <td><img src='icons/check-icon.svg'/></td>
+        <td><img src='/icons/check-icon.svg'/></td>
                 <td><form method='POST' action='books/{{ $book->n }}/to-unread'>
+                  @method('PUT')
                   @csrf
                       <button type='submit'>Segna come da leggere</button>
                     </form></td>
         @endif
 
         <td><form method='POST' action='books/{{ $book->n }}/delete'>
+                    @method('DELETE')
                     @csrf
                     <button type='submit'
                      onclick='return confirm(`Are you sure?`);'>Elimina</button>
@@ -51,9 +54,10 @@
     </nav>
   </div>
   <div class="flex-button">
-    <a href="home"><button type="button">Torna indietro</button></a>
-    <a href="unread"><button type="button">Da leggere</button></a>
-    <a href="books"><button type="button">Tutti i miei libri</button></a>
+    <a href="/home"><button type="button">Torna indietro</button></a>
+    <a href="/book-form"><button type="button">Aggiungi libro</button></a>
+    <a href="/books/unread"><button type="button">Da leggere</button></a>
+    <a href="/books"><button type="button">Tutti i miei libri</button></a>
   </div>
 </div>
 @endsection

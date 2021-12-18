@@ -28,19 +28,19 @@ Route::get("/book-form", function(){
   return view("book-form");
 })->middleware("auth");
 
-Route::get("/search", [BookController::class, "read"])->middleware("auth");
+Route::get("/books/search", [BookController::class, "read"])->middleware("auth");
 
-Route::post("/{book}/create", [UserBookController::class, "create"])->middleware("auth");
+Route::post("/books/{book}/create", [UserBookController::class, "create"])->middleware("auth");
 
 Route::get("/books", [UserBookController::class, "read"])->middleware("auth");
 
-Route::post("/books/{userbook}/to-read", [UserBookController::class, "unreadToRead"])->middleware("auth");
+Route::put("/books/{userbook}/to-read", [UserBookController::class, "unreadToRead"])->middleware("auth");
 
-Route::post("/books/{userbook}/to-unread", [UserBookController::class, "readToUnread"])->middleware("auth");
+Route::put("/books/{userbook}/to-unread", [UserBookController::class, "readToUnread"])->middleware("auth");
 
-Route::post("/books/{userbook}/delete", [UserBookController::class, "delete"])->middleware("auth");
+Route::delete("/books/{userbook}/delete", [UserBookController::class, "delete"])->middleware("auth");
 
-Route::get("/unread", [UserBookController::class, "showToRead"])->middleware("auth");
+Route::get("/books/unread", [UserBookController::class, "showToRead"])->middleware("auth");
 
 Route::patch("/books", [
   "as" => "books.table",

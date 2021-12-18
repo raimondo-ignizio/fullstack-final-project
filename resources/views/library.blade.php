@@ -33,8 +33,8 @@
     </nav>
   </div>
   <div class="flex-button">
-    <a href="home"><button type="button">Homepage</button></a>
-    <a href="books"><button type="button">I miei libri</button></a>
+    <a href="/home"><button type="button">Homepage</button></a>
+    <a href="/books"><button type="button">I miei libri</button></a>
   </div>
 </div>
 @endsection

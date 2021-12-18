@@ -20,7 +20,7 @@
 <body class="bg-gray-100 h-screen antialiased leading-none font-sans">
     <div id="app">
         <header class="bg-blue-900 py-6 main-header">
-          <a href="home"><img src="icons/site-logo-2.svg" id="header-logo"/></a>
+          <a href="/home"><img src="/icons/site-logo-2.svg" id="header-logo"/></a>
             <div id="user">
                 <nav class="space-x-4 text-gray-300 text-sm sm:text-base">
                     @guest
@@ -46,9 +46,9 @@
       <p>Copyright © 2021 Libramente</p>
     </div>
     <div id="social">
-      <a href="#"><img src="icons/facebook-icon.svg"/></a>
-      <a href="#"><img src="icons/twitter-icon.svg"/></a>
-      <a href="#"><img src="icons/instagram-icon.svg"/></a>
+      <a href="#"><img src="/icons/facebook-icon.svg"/></a>
+      <a href="#"><img src="/icons/twitter-icon.svg"/></a>
+      <a href="#"><img src="/icons/instagram-icon.svg"/></a>
     </div>
   </footer>
 </body>

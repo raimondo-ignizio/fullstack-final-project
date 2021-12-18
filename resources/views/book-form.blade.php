@@ -11,26 +11,27 @@
         </ul>
     </div>
 @endif
-
-<div class="flex form-container">
-  <header class="form-header" id="book-search">
-    <img src="icons/book-icon.svg"/>
-    Aggiungi libro
-  </header>
-  <form method="GET" action="search">
-    @csrf
-    <div class="flex">
-      <label for="title"> Titolo </label>
-      <input name="title" type="text"/>
+<div id="container">
+  <div class="flex form-container">
+    <div class="form-header" id="book-search">
+      <img src="icons/book-icon.svg"/>
+      Aggiungi libro
     </div>
-
+    <form method="GET" action="books/search">
+      @csrf
       <div class="flex">
-        <button type="submit" class="submit-button"> Cerca </button>
+        <label for="title"> Titolo </label>
+        <input name="title" type="text"/>
+        <p id="hint">Lascia il campo vuoto per visualizzare tutti i libri.</p>
       </div>
-  </form>
+
+        <div class="flex">
+          <button type="submit" class="submit-button"> Cerca </button>
+        </div>
+    </form>
 
 
-  <a href="home" class="margin-top-20">Torna indietro</a>
+    <a href="/home" class="margin-top-20">Torna indietro</a>
+  </div>
 </div>
-
 @endsection
