@@ -160,6 +160,10 @@ button {
   margin-top: 320px;
 }
 
+#api-link a {
+  color: red;
+}
+
 @media only screen and (max-width: 319px) {
   #container p, #container a {
     font-size: 17px;

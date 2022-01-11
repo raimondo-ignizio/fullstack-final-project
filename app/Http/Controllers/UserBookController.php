@@ -47,21 +47,21 @@ class UserBookController extends Controller
 
   public function unreadToRead(UserBook $userbook)
   {
-    $userbook->update(["is_finished" => true]);
+    UserBook::where("id", $userbook->id)->update(["is_finished" => true]);
 
     return back();
   }
 
   public function readToUnread(UserBook $userbook)
   {
-    $userbook->update(["is_finished" => false]);
+    UserBook::where("id", $userbook->id)->update(["is_finished" => false]);
 
     return back();
   }
 
   public function delete(UserBook $userbook)
   {
-    $userbook->delete();
+    UserBook::where("id", $userbook->id)->delete();
 
     return back();
   }

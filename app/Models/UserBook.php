@@ -16,4 +16,9 @@ class UserBook extends Model
       "book_id",
       "is_finished"
     ];
+
+    public function book()
+    {
+      return $this->belongsTo(Book::class);
+    }
 }

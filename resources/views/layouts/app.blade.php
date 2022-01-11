@@ -45,6 +45,9 @@
     <div id="copyright">
       <p>Copyright © 2021 Libramente</p>
     </div>
+    <div id="api-link">
+      <a href="/api">API Mode</a>
+    </div>
     <div id="social">
       <a href="#"><img src="/icons/facebook-icon.svg"/></a>
       <a href="#"><img src="/icons/twitter-icon.svg"/></a>

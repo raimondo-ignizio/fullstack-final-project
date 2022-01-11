@@ -18,4 +18,9 @@ class Book extends Model
       "year",
       "pages"
     ];
+
+    public function userBook()
+    {
+      return $this->hasMany(UserBook::class);
+    }
 }
