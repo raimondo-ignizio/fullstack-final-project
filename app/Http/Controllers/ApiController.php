@@ -8,6 +8,7 @@ use App\Models\Book;
 use App\Models\UserBook;
 use App\Http\Resources\UserBookCollection;
 use App\Http\Resources\BookCollection;
+use App\Helpers\PaginationHelper;
 
 class ApiController extends Controller
 {
@@ -21,23 +22,35 @@ class ApiController extends Controller
       return new BookCollection(Book::where("title", "like", "%".$title."%")->get());
     }
 
+    public function getAllBooks() {
+      $books = Book::all();
+      $showPerPage = 10;
+      $paginated = PaginationHelper::paginate($books, $showPerPage);
+
+      return $paginated;
+    }
+
     public function getUnreadUserBooks() {
-      return new UserBookCollection(UserBook::where("user_id", Auth::id())
-                                     ->where("is_finished", 0)->get());
+      $books = collect(new UserBookCollection(UserBook::where("user_id", 1)
+                          ->where("is_finished", 0)->get()));
+      $showPerPage = 10;
+      $paginated = PaginationHelper::paginate($books, $showPerPage);
+
+      return $paginated;
     }
 
     public function getAllUserBooks() {
-      return new UserBookCollection(UserBook::where("user_id", Auth::id())->get());
+      $books = collect(new UserBookCollection(UserBook::where("user_id", 1)->get()));
+      $showPerPage = 10;
+      $paginated = PaginationHelper::paginate($books, $showPerPage);
+
+      return $paginated;
     }
 
-    public function createBook(Request $req) {
+    public function createBook($id) {
       $newbook = new UserBook;
-      $newbook->book_id = $req->id;
-      if ($req->user) {
-        $newbook->user_id = $req->user;
-      } else {
-        $newbook->user_id = Auth::id();
-      }
+      $newbook->book_id = $id;
+      $newbook->user_id = 1;
       $newbook->save();
 
       return response()->json([
@@ -49,8 +62,8 @@ class ApiController extends Controller
       return new UserBookCollection(UserBook::where("id", $id)->get());
     }
 
-    public function updateBook(Request $req) {
-      $book = UserBook::find($req->id);
+    public function updateBook($id) {
+      $book = UserBook::find($id);
 
       if ($book->is_finished == 0) {
         $book->is_finished = 1;
@@ -66,8 +79,8 @@ class ApiController extends Controller
       ], 201);
     }
 
-    public function deleteBook(Request $req) {
-      $book = UserBook::find($req->id);
+    public function deleteBook($id) {
+      $book = UserBook::find($id);
       $book->delete();
 
       return response()->json([

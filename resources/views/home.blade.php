@@ -1,33 +1,29 @@
-@extends('layouts.app')
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-@section('content')
-<div id="container">
-  <main class="sm:container sm:mx-auto sm:mt-10">
-      <div class="w-full sm:px-6 logo-container">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-          @if (session('status'))
-              <div class="text-sm border border-t-8 rounded text-green-700 border-green-600 bg-green-100 px-3 py-4 mb-4" role="alert">
-                  {{ session('status') }}
-              </div>
-          @endif
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-          <section class="flex flex-col break-words sm:border-1 sm:rounded-md sm:shadow-sm sm:shadow-lg">
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
-              <header class="form-header">
-                  <img src="icons/site-logo-2.svg" id="home-logo"/>
-              </header>
-
-              <div class="w-full p-6">
-                  <p class="text-gray-700">
-                      Benvenuto/a, {{ Auth::user()-> name }}!
-                  </p>
-
-                  <a href="/book-form" class="home-link">Aggiungi un libro</a>
-                  <a href="/books" class="home-link">I miei libri</a>
-                  <a href="/books/unread" class="home-link">Non letti</a>
-              </div>
-          </section>
-      </div>
-  </main>
-</div>
-@endsection
+    <!-- Styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link rel="icon" href="{{ url('icons/site-logo.svg')}}">
+</head>
+<body class="bg-gray-100 h-screen antialiased leading-none font-sans">
+  <div id="app">
+    <vue-header></vue-header>
+    <div id="container">
+      <router-view></router-view>
+    </div>
+    <vue-footer></vue-footer>
+  </div>
+</body>
+</html>

@@ -1,15 +1,21 @@
 require('./bootstrap');
+require('../sass/app.scss')
+import Vue from 'vue'
+import VueHeader from "./components/VueHeader.vue";
+import VueFooter from "./components/VueFooter.vue";
 
-let optionalForm = document.getElementById("form-optional");
+window.Vue = require('vue');
 
-function showOptionalForm() {
-  if (document.getElementById("yes").checked) {
-  optionalForm.style.display = "visible";
-  }
-};
+// router
+import router from './router.js';
+window.router = router;
+window.Fire = new Vue();
 
-function hideOptionalForm() {
-  if (document.getElementById("no").checked) {
-    optionalForm.style.display = "none";
-  }
-};
+
+Vue.component("vue-header", VueHeader);
+Vue.component("vue-footer", VueFooter);
+
+const app = new Vue({
+    el: '#app',
+    router,
+}).$mount('#app');

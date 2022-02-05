@@ -139,7 +139,7 @@ a {
   color: #292929;
 }
 
-button {
+button,.table button {
   border-radius: 3px;
   font-size: 15px;
   background-color: #355C9C;
@@ -147,6 +147,14 @@ button {
   border-color: white;
   min-height: 30px;
   min-width: 50px;
+}
+
+button:disabled {
+  background-color: grey;
+}
+
+.nav-button {
+  font-size: 25px;
 }
 
 #hint {
@@ -160,13 +168,18 @@ button {
   margin-top: 320px;
 }
 
-#api-link a {
-  color: red;
-}
-
-@media only screen and (max-width: 319px) {
+@media only screen and (max-width: 600px) {
   #container p, #container a {
     font-size: 17px;
+  }
+
+  .nav-button {
+    font-size: 13px;
+  }
+
+  button {
+    height: 50px;
+    width: 70px;
   }
 }
 
