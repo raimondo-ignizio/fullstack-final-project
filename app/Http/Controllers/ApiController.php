@@ -31,7 +31,7 @@ class ApiController extends Controller
     }
 
     public function getUnreadUserBooks() {
-      $books = collect(new UserBookCollection(UserBook::where("user_id", 1)
+      $books = collect(new UserBookCollection(UserBook::where("user_id", Auth::id())
                           ->where("is_finished", 0)->get()));
       $showPerPage = 10;
       $paginated = PaginationHelper::paginate($books, $showPerPage);
@@ -40,7 +40,7 @@ class ApiController extends Controller
     }
 
     public function getAllUserBooks() {
-      $books = collect(new UserBookCollection(UserBook::where("user_id", 1)->get()));
+      $books = collect(new UserBookCollection(UserBook::where("user_id", Auth::id())->get()));
       $showPerPage = 10;
       $paginated = PaginationHelper::paginate($books, $showPerPage);
 
@@ -50,7 +50,7 @@ class ApiController extends Controller
     public function createBook($id) {
       $newbook = new UserBook;
       $newbook->book_id = $id;
-      $newbook->user_id = 1;
+      $newbook->user_id = Auth::id();
       $newbook->save();
 
       return response()->json([

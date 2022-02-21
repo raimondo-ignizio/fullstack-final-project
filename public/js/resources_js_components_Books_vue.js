@@ -58,6 +58,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -80,7 +81,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchBooks: function fetchBooks(page_url) {
       var _this = this;
 
-      page_url = page_url || "api/books/all";
+      page_url = page_url || "/api/books/all";
       fetch(page_url).then(function (res) {
         return res.json();
       }).then(function (res) {
@@ -90,7 +91,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     addBook: function addBook(id) {
-      fetch("api/books/".concat(id), {
+      fetch("/api/books/".concat(id), {
         method: "post",
         headers: {
           'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
@@ -310,11 +311,11 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", { staticClass: "flex-button margin-top-20" }, [
-      _c("a", { attrs: { href: "/" } }, [
+      _c("a", { attrs: { href: "/app" } }, [
         _c("button", { attrs: { type: "button" } }, [_vm._v("Homepage")]),
       ]),
       _vm._v(" "),
-      _c("a", { attrs: { href: "/books" } }, [
+      _c("a", { attrs: { href: "/app/books" } }, [
         _c("button", { attrs: { type: "button" } }, [_vm._v("I miei libri")]),
       ]),
     ])

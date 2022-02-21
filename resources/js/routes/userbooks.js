@@ -2,7 +2,7 @@ const userbooks = () =>import ( '../components/UserBooks.vue')
 
 export default [
     {
-        path: '/books',
+        path: '/app/books',
         component: userbooks,
         name: 'userbooks',
     },

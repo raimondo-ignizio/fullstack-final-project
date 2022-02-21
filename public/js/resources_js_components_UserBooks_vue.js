@@ -73,6 +73,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -96,7 +97,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchBooks: function fetchBooks(page_url) {
       var _this = this;
 
-      page_url = page_url || "api/books";
+      page_url = page_url || "/api/books";
       fetch(page_url).then(function (res) {
         return res.json();
       }).then(function (res) {
@@ -108,7 +109,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchUnreadBooks: function fetchUnreadBooks(page_url) {
       var _this2 = this;
 
-      page_url = page_url || "api/books/unread";
+      page_url = page_url || "/api/books/unread";
       fetch(page_url).then(function (res) {
         return res.json();
       }).then(function (res) {
@@ -129,7 +130,7 @@ __webpack_require__.r(__webpack_exports__);
     updateBook: function updateBook(id) {
       var _this3 = this;
 
-      fetch("api/books/".concat(id), {
+      fetch("/api/books/".concat(id), {
         method: "put",
         headers: {
           'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
@@ -137,14 +138,14 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (res) {
         return res.json();
       }).then(function (data) {
-        _this3.fetchBooks("api/books?page=".concat(_this3.pagination.current_page));
+        _this3.fetchBooks("/api/books?page=".concat(_this3.pagination.current_page));
       });
     },
     deleteBook: function deleteBook(id) {
       var _this4 = this;
 
       if (confirm("Sei sicuro?")) {
-        fetch("api/books/".concat(id), {
+        fetch("/api/books/".concat(id), {
           method: "delete",
           headers: {
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
@@ -154,7 +155,7 @@ __webpack_require__.r(__webpack_exports__);
         }).then(function (data) {
           alert("Libro rimosso.");
 
-          _this4.fetchBooks("api/books?page=".concat(_this4.pagination.current_page));
+          _this4.fetchBooks("/api/books?page=".concat(_this4.pagination.current_page));
         });
       }
     }
@@ -435,7 +436,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("a", { attrs: { href: "/" } }, [
+    return _c("a", { attrs: { href: "/app" } }, [
       _c("button", { attrs: { type: "button" } }, [_vm._v("Torna indietro")]),
     ])
   },
@@ -443,7 +444,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("a", { attrs: { href: "/library" } }, [
+    return _c("a", { attrs: { href: "/app/library" } }, [
       _c("button", { attrs: { type: "button" } }, [_vm._v("Aggiungi libro")]),
     ])
   },

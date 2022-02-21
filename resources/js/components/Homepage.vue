@@ -9,14 +9,38 @@
 
               <div class="w-full p-6">
                   <p class="text-gray-700">
-                      Benvenuto/a!
+                      Benvenuto/a {{ username }}!
                   </p>
                   <nav class="home-link">
-                    <a href="/library" class="home-link">Aggiungi un libro</a>
-                    <a href="/books" class="home-link">I miei libri</a>
+                    <a href="/app/library" class="home-link">Aggiungi un libro</a>
+                    <a href="/app/books" class="home-link">I miei libri</a>
                   </nav>
               </div>
           </section>
       </div>
   </main>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      username: ""
+    }
+  },
+
+  methods: {
+    getUser() {
+      fetch(`/api/user`)
+      .then(res => res.json())
+      .then(res => {
+        this.username = res.name
+      })
+    }
+  },
+
+  created() {
+    this.getUser()
+  },
+}
+</script>

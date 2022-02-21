@@ -38,6 +38,12 @@
   margin-bottom: 8px;
 }
 
+#header-user {
+  align-self: center;
+  margin-right: 15px;
+  margin-top: 17px;
+}
+
 .form-container {
   margin: 155px 0;
 }

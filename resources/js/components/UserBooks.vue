@@ -52,14 +52,15 @@
         </section>
 
         <section class="flex-button margin-top-20">
-          <a href="/"><button type="button">Torna indietro</button></a>
-          <a href="/library"><button type="button">Aggiungi libro</button></a>
+          <a href="/app"><button type="button">Torna indietro</button></a>
+          <a href="/app/library"><button type="button">Aggiungi libro</button></a>
           <a href="#"><button type="button" @click="fetchUnreadBooks()">Da leggere</button></a>
           <a href="#"><button type="button" @click="fetchBooks()">Tutti i miei libri</button></a>
         </section>
     </nav>
   </div>
 </template>
+
 <script>
 export default {
     data() {
@@ -85,7 +86,7 @@ export default {
 
     methods: {
       fetchBooks(page_url) {
-        page_url = page_url || "api/books";
+        page_url = page_url || "/api/books";
         fetch(page_url)
           .then(res => res.json())
           .then(res => {
@@ -95,7 +96,7 @@ export default {
       },
 
       fetchUnreadBooks(page_url) {
-        page_url = page_url || "api/books/unread";
+        page_url = page_url || "/api/books/unread";
         fetch(page_url)
         .then(res => res.json())
         .then(res => {
@@ -116,7 +117,7 @@ export default {
       },
 
       updateBook(id) {
-        fetch(`api/books/${id}`, {
+        fetch(`/api/books/${id}`, {
           method: "put",
           headers: {
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
@@ -124,13 +125,13 @@ export default {
         })
         .then(res => res.json())
         .then(data => {
-          this.fetchBooks(`api/books?page=${this.pagination.current_page}`);
+          this.fetchBooks(`/api/books?page=${this.pagination.current_page}`);
         })
       },
 
       deleteBook(id) {
         if (confirm("Sei sicuro?")) {
-          fetch(`api/books/${id}`, {
+          fetch(`/api/books/${id}`, {
             method: "delete",
             headers: {
               'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
@@ -139,7 +140,7 @@ export default {
           .then(res => res.json())
           .then(data => {
             alert("Libro rimosso.");
-            this.fetchBooks(`api/books?page=${this.pagination.current_page}`);
+            this.fetchBooks(`/api/books?page=${this.pagination.current_page}`);
           })
         }
       },

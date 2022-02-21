@@ -1,4 +1,6 @@
-<vue-header></vue-header>
+@extends('layouts.app')
+
+@section('content')
 <main class="sm:container sm:mx-auto sm:max-w-lg sm:mt-10">
     <div class="flex form-container">
         <div class="w-full">
@@ -80,4 +82,4 @@
         </div>
     </div>
 </main>
-<vue-footer></vue-footer>
+@endsection

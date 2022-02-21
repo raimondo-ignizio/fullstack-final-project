@@ -2,7 +2,7 @@ const books = () =>import ( '../components/Books.vue')
 
 export default [
     {
-        path: '/library',
+        path: '/app/library',
         component: books,
         name: 'books',
     },

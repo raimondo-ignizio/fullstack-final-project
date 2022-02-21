@@ -1,7 +1,7 @@
 <template>
   <footer>
     <div id="copyright">
-      <p>Copyright © 2021 Libramente</p>
+      <p>Copyright © 2022 Libramente</p>
     </div>
     <div id="social">
       <a href="#"><img src="/icons/facebook-icon.svg"/></a>

@@ -18,9 +18,16 @@ use App\Models\UserBook;
 |
 */
 
+Auth::routes();
 
-Route::get('/{any?}', [
+Route::get('/app/{any?}', [
     function () {
         return view('home');
     }
-])->where('any', '.*');
+])->where('any', '.*')->middleware("auth");
+
+Route::get("/", [
+  function() {
+    return redirect("/app");
+  }
+]);
