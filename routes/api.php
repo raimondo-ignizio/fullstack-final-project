@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ApiController;
+use App\Http\Controllers\BookController;
 use App\Models\Book;
 use App\Models\UserBook;
 
@@ -23,12 +23,12 @@ use App\Models\UserBook;
 });
 
 Route::middleware(["auth"])->group(function() {
-  Route::get("books/search", [ApiController::class, "searchBooks"]);
-  Route::get("books/all", [ApiController::class, "getAllBooks"]);
-  Route::get("books/unread", [ApiController::class, "getUnreadUserBooks"]);
-  Route::get("books", [ApiController::class, "getAllUserBooks"]);
-  Route::get("books/{id}", [ApiController::class, "getBook"]);
-  Route::put("books/{id}", [ApiController::class, "updateBook"]);
-  Route::delete("books/{id}", [ApiController::class, "deleteBook"]);
-  Route::post("books/{id}", [ApiController::class, "createBook"]);
+  Route::get("books/search", [BookController::class, "searchBooks"]);
+  Route::get("books/all", [BookController::class, "getAllBooks"]);
+  Route::get("books/unread", [BookController::class, "getUnreadUserBooks"]);
+  Route::get("books", [BookController::class, "getAllUserBooks"]);
+  Route::get("books/{id}", [BookController::class, "getBook"]);
+  Route::put("books/{id}", [BookController::class, "updateBook"]);
+  Route::delete("books/{id}", [BookController::class, "deleteBook"]);
+  Route::post("books/{id}", [BookController::class, "createBook"]);
 });
