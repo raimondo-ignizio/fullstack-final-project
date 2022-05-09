@@ -3,9 +3,9 @@
 @section("content")
 <div id="container">
   <div class="flex">
-    <p class="error-message">Hai già aggiunto questo libro.</p>
+    <p class="error-message">Si è verificato un errore, riprova più tardi.</p>
     <div class="flex-button">
-      <a href="/book-form"><button type="button">Torna indietro</button></a>
+      <a href="/"><button type="button">Torna indietro</button></a>
     </div>
   </div>
 </div>
