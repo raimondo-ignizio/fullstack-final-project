@@ -11,6 +11,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../router */ "./resources/js/router.js");
 //
 //
 //
@@ -59,6 +60,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -81,14 +83,19 @@ __webpack_require__.r(__webpack_exports__);
     fetchBooks: function fetchBooks(page_url) {
       var _this = this;
 
-      page_url = page_url || "/api/books/all";
-      fetch(page_url).then(function (res) {
-        return res.json();
-      }).then(function (res) {
-        _this.books = res.data;
+      try {
+        page_url = page_url || "/api/books/all";
+        fetch(page_url).then(function (res) {
+          return res.json();
+        }).then(function (res) {
+          _this.books = res.data;
 
-        _this.makePagination(res);
-      });
+          _this.makePagination(res);
+        });
+      } catch (err) {
+        alert("Si è verificato un errore:", err);
+        _router__WEBPACK_IMPORTED_MODULE_0__["default"].push("home");
+      }
     },
     addBook: function addBook(id) {
       fetch("/api/books/".concat(id), {
@@ -96,7 +103,7 @@ __webpack_require__.r(__webpack_exports__);
         headers: {
           'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         }
-      }).then(alert("Il libro è stato aggiunto.")).then(router.push("books"));
+      }).then(alert("Il libro è stato aggiunto.")).then(_router__WEBPACK_IMPORTED_MODULE_0__["default"].push("books"));
     },
     makePagination: function makePagination(res) {
       var pagination = {

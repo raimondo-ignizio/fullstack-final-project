@@ -27,13 +27,13 @@
           <section class="flex-button">
             <button type="button" class="nav-button"
             :disabled="!pagination.prev_page_url"
-            @click="fetchBooks(pagination.prev_page_url)"><< Pagina precedente</button>
+            @click="fetchBooks(pagination.prev_page_url)">&lt;&lt; Pagina precedente</button>
 
              <p>Page {{ pagination.current_page }} of {{ pagination.last_page}}</p>
 
             <button type="button" class="nav-button"
              :disabled="!pagination.next_page_url"
-             @click="fetchBooks(pagination.next_page_url)">Pagina successiva >></button>
+             @click="fetchBooks(pagination.next_page_url)">Pagina successiva &gt;&gt;</button>
           </section>
 
 
@@ -47,6 +47,8 @@
 </template>
 
 <script>
+import router from "../router";
+
 export default {
     data() {
         return {
@@ -69,6 +71,7 @@ export default {
 
     methods: {
       fetchBooks(page_url) {
+        try {
         page_url = page_url || "/api/books/all"
         fetch(page_url)
           .then(res => res.json())
@@ -76,6 +79,10 @@ export default {
             this.books = res.data;
             this.makePagination(res);
           })
+        } catch (err) {
+          alert("Si è verificato un errore:", err);
+          router.push("home");
+        }
       },
 
       addBook(id) {

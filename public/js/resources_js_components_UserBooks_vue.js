@@ -71,9 +71,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -98,25 +95,35 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       page_url = page_url || "/api/books";
-      fetch(page_url).then(function (res) {
-        return res.json();
-      }).then(function (res) {
-        _this.books = res.data;
 
-        _this.makePagination(res);
-      });
+      try {
+        fetch(page_url).then(function (res) {
+          return res.json();
+        }).then(function (res) {
+          _this.books = res.data;
+
+          _this.makePagination(res);
+        });
+      } catch (err) {
+        alert("Si è verificato un errore:", err);
+      }
     },
     fetchUnreadBooks: function fetchUnreadBooks(page_url) {
       var _this2 = this;
 
       page_url = page_url || "/api/books/unread";
-      fetch(page_url).then(function (res) {
-        return res.json();
-      }).then(function (res) {
-        _this2.books = res.data;
 
-        _this2.makePagination(res);
-      });
+      try {
+        fetch(page_url).then(function (res) {
+          return res.json();
+        }).then(function (res) {
+          _this2.books = res.data;
+
+          _this2.makePagination(res);
+        });
+      } catch (err) {
+        alert("Si è verificato un errore:", err);
+      }
     },
     makePagination: function makePagination(res) {
       var pagination = {
@@ -130,33 +137,41 @@ __webpack_require__.r(__webpack_exports__);
     updateBook: function updateBook(id) {
       var _this3 = this;
 
-      fetch("/api/books/".concat(id), {
-        method: "put",
-        headers: {
-          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        }
-      }).then(function (res) {
-        return res.json();
-      }).then(function (data) {
-        _this3.fetchBooks("/api/books?page=".concat(_this3.pagination.current_page));
-      });
-    },
-    deleteBook: function deleteBook(id) {
-      var _this4 = this;
-
-      if (confirm("Sei sicuro?")) {
+      try {
         fetch("/api/books/".concat(id), {
-          method: "delete",
+          method: "put",
           headers: {
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
           }
         }).then(function (res) {
           return res.json();
         }).then(function (data) {
-          alert("Libro rimosso.");
-
-          _this4.fetchBooks("/api/books?page=".concat(_this4.pagination.current_page));
+          _this3.fetchBooks("/api/books?page=".concat(_this3.pagination.current_page));
         });
+      } catch (err) {
+        alert("Si è verificato un errore:", err);
+      }
+    },
+    deleteBook: function deleteBook(id) {
+      var _this4 = this;
+
+      if (confirm("Sei sicuro?")) {
+        try {
+          fetch("/api/books/".concat(id), {
+            method: "delete",
+            headers: {
+              'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            }
+          }).then(function (res) {
+            return res.json();
+          }).then(function (data) {
+            alert("Libro rimosso.");
+
+            _this4.fetchBooks("/api/books?page=".concat(_this4.pagination.current_page));
+          });
+        } catch (err) {
+          alert("Si è verificato un errore:", err);
+        }
       }
     }
   }

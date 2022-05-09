@@ -5271,8 +5271,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -5284,21 +5282,29 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     logout: function logout() {
-      fetch("/logout", {
-        method: "post",
-        headers: {
-          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        }
-      });
+      try {
+        fetch("/logout", {
+          method: "post",
+          headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+          }
+        });
+      } catch (err) {
+        alert("Si è verificato un errore:", err);
+      }
     },
     getUser: function getUser() {
       var _this = this;
 
-      fetch("/api/user").then(function (res) {
-        return res.json();
-      }).then(function (res) {
-        _this.username = res.name;
-      });
+      try {
+        fetch("/api/user").then(function (res) {
+          return res.json();
+        }).then(function (res) {
+          _this.username = res.name;
+        });
+      } catch (err) {
+        alert("Si è verificato un errore:", err);
+      }
     }
   }
 });

@@ -44,11 +44,15 @@ __webpack_require__.r(__webpack_exports__);
     getUser: function getUser() {
       var _this = this;
 
-      fetch("/api/user").then(function (res) {
-        return res.json();
-      }).then(function (res) {
-        _this.username = res.name;
-      });
+      try {
+        fetch("/api/user").then(function (res) {
+          return res.json();
+        }).then(function (res) {
+          _this.username = res.name;
+        });
+      } catch (err) {
+        alert("Si è verificato un errore:", err);
+      }
     }
   },
   created: function created() {
@@ -156,9 +160,9 @@ var render = function () {
           _c("div", { staticClass: "w-full p-6" }, [
             _c("p", { staticClass: "text-gray-700" }, [
               _vm._v(
-                "\n                    Benvenuto/a " +
+                "\n          Benvenuto/a " +
                   _vm._s(_vm.username) +
-                  "!\n                "
+                  "!\n        "
               ),
             ]),
             _vm._v(" "),
