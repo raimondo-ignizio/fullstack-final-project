@@ -13,7 +13,7 @@
           <th></th>
         </tr>
 
-        <tr v-for="userbook in books" v-bind:key="book.id">
+        <tr v-for="userbook in books" v-bind:key="userbook.id">
           <td>{{ userbook.book.title }}</td>
           <td>{{ userbook.book.author }}</td>
           <td>{{ userbook.book.genre }}</td>
@@ -59,6 +59,8 @@
 </template>
 
 <script>
+import books from "../../api/books.js"
+
 export default {
   data() {
     return {
@@ -82,76 +84,46 @@ export default {
   },
 
   methods: {
-    fetchBooks(page_url) {
+    async fetchBooks(page_url) {
       page_url = page_url || "/api/books";
       try {
-        fetch(page_url)
-          .then(res => res.json())
-          .then(res => {
-            this.books = res.data;
-            this.makePagination(res);
-          })
+        let res = await books.fetchBooks(page_url);
+        this.books = res.data;
+        this.makePagination(res);
       } catch (err) {
         alert("Si è verificato un errore:", err);
       }
     },
 
-    fetchUnreadBooks(page_url) {
+    async fetchUnreadBooks(page_url) {
       page_url = page_url || "/api/books/unread";
       try {
-        fetch(page_url)
-          .then(res => res.json())
-          .then(res => {
-            this.books = res.data;
-            this.makePagination(res);
-          })
+        let res = await books.fetchBooks(page_url);
+        this.books = res.data;
+        this.makePagination(res);
       } catch (err) {
         alert("Si è verificato un errore:", err);
       }
     },
 
     makePagination(res) {
-      let pagination = {
-        current_page: res.current_page,
-        last_page: res.last_page,
-        next_page_url: res.next_page_url,
-        prev_page_url: res.prev_page_url,
-      }
-
-      this.pagination = pagination;
+      this.pagination = books.makePagination(res);
     },
 
-    updateBook(id) {
+    async updateBook(id) {
       try {
-        fetch(`/api/books/${id}`, {
-          method: "put",
-          headers: {
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-          }
-        })
-          .then(res => res.json())
-          .then(data => {
-            this.fetchBooks(`/api/books?page=${this.pagination.current_page}`);
-          })
+        await books.updateBook(id);
+        this.fetchBooks(`/api/books?page=${this.pagination.current_page}`);
       } catch (err) {
         alert("Si è verificato un errore:", err);
       }
     },
 
-    deleteBook(id) {
+    async deleteBook(id) {
       if (confirm("Sei sicuro?")) {
         try {
-          fetch(`/api/books/${id}`, {
-            method: "delete",
-            headers: {
-              'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-            }
-          })
-            .then(res => res.json())
-            .then(data => {
-              alert("Libro rimosso.");
-              this.fetchBooks(`/api/books?page=${this.pagination.current_page}`);
-            })
+          await books.deleteBook(id);
+          this.fetchBooks(`/api/books?page=${this.pagination.current_page}`);
         } catch (err) {
           alert("Si è verificato un errore:", err);
         }

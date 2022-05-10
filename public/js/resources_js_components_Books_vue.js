@@ -11,9 +11,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../router */ "./resources/js/router.js");
-//
-//
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _api_books_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../api/books.js */ "./resources/api/books.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -83,37 +89,107 @@ __webpack_require__.r(__webpack_exports__);
     fetchBooks: function fetchBooks(page_url) {
       var _this = this;
 
-      try {
-        page_url = page_url || "/api/books/all";
-        fetch(page_url).then(function (res) {
-          return res.json();
-        }).then(function (res) {
-          _this.books = res.data;
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                page_url = page_url || "/api/books/all";
+                _context.prev = 1;
+                _context.next = 4;
+                return _api_books_js__WEBPACK_IMPORTED_MODULE_1__["default"].fetchBooks(page_url);
 
-          _this.makePagination(res);
-        });
-      } catch (err) {
-        alert("Si è verificato un errore:", err);
-        _router__WEBPACK_IMPORTED_MODULE_0__["default"].push("home");
-      }
+              case 4:
+                res = _context.sent;
+                _this.books = res.data;
+
+                _this.makePagination(res);
+
+                _context.next = 13;
+                break;
+
+              case 9:
+                _context.prev = 9;
+                _context.t0 = _context["catch"](1);
+                alert("Si è verificato un errore:" + _context.t0);
+                console.log("Error:", _context.t0);
+
+              case 13:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[1, 9]]);
+      }))();
     },
     addBook: function addBook(id) {
-      fetch("/api/books/".concat(id), {
-        method: "post",
-        headers: {
-          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        }
-      }).then(alert("Il libro è stato aggiunto.")).then(_router__WEBPACK_IMPORTED_MODULE_0__["default"].push("books"));
+      try {
+        _api_books_js__WEBPACK_IMPORTED_MODULE_1__["default"].addBook(id);
+      } catch (err) {
+        alert("Si è verificato un errore:" + err);
+      }
     },
     makePagination: function makePagination(res) {
-      var pagination = {
-        current_page: res.current_page,
-        last_page: res.last_page,
-        next_page_url: res.next_page_url,
-        prev_page_url: res.prev_page_url
-      };
-      this.pagination = pagination;
+      this.pagination = _api_books_js__WEBPACK_IMPORTED_MODULE_1__["default"].makePagination(res);
     }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/api/books.js":
+/*!********************************!*\
+  !*** ./resources/api/books.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  fetchBooks: function fetchBooks(page_url) {
+    return fetch(page_url).then(function (res) {
+      return res.json();
+    });
+  },
+  addBook: function addBook(id) {
+    fetch("/api/books/".concat(id), {
+      method: "post",
+      headers: {
+        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      }
+    }).then(alert("Il libro è stato aggiunto.")).then(router.push("books"));
+  },
+  updateBook: function updateBook(id) {
+    fetch("/api/books/".concat(id), {
+      method: "put",
+      headers: {
+        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      }
+    }).then(function (res) {
+      return res.json();
+    });
+  },
+  deleteBook: function deleteBook(id) {
+    fetch("/api/books/".concat(id), {
+      method: "delete",
+      headers: {
+        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      }
+    }).then(function (res) {
+      return res.json();
+    });
+  },
+  makePagination: function makePagination(res) {
+    var pagination = {
+      current_page: res.current_page,
+      last_page: res.last_page,
+      next_page_url: res.next_page_url,
+      prev_page_url: res.prev_page_url
+    };
+    return pagination;
   }
 });
 

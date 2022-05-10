@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import users from "../../api/users.js";
+
 export default {
   data() {
     return {
@@ -22,24 +24,16 @@ export default {
   methods: {
     logout() {
       try {
-        fetch(`/logout`, {
-          method: "post",
-          headers: {
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-          }
-        });
+        users.logout();
       } catch (err) {
         alert("Si è verificato un errore:", err);
       }
     },
 
-    getUser() {
+    async getUser() {
       try {
-        fetch(`/api/user`)
-          .then(res => res.json())
-          .then(res => {
-            this.username = res.name
-          })
+        let res = await users.getUser();
+        this.username = res.name;
       } catch (err) {
         alert("Si è verificato un errore:", err);
       }
